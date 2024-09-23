@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BF_interpreter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9981d930c5eed972d98857601c3347b0c24cc79d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ef6c5747bb2d28788971263734410767f10913b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("BF_interpreter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BF_interpreter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

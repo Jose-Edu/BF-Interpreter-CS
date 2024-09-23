@@ -2,21 +2,15 @@ using System.Text;
 
 public class Memory {
 
-    public List<Byte> memo;
+    public List<Byte> memo = [0];
     public int acKey = 0;
     private string repeatBlock = "";
     public int commands = 0;
     private bool inLoop = false;
 
-    public Memory() {
-
-        memo.Add(0);
-
-    }
-
     public void Add() {
 
-        if (repeatBlock != "" || inLoop) {
+        if (repeatBlock == "" || inLoop) {
 
             if (memo[acKey] != 255) {
                 memo[acKey]++;
@@ -37,7 +31,7 @@ public class Memory {
 
     public void Remove() {
 
-        if (repeatBlock != "" || inLoop) {
+        if (repeatBlock == "" || inLoop) {
 
             if (memo[acKey] != 0) {
                 memo[acKey]--;
@@ -58,7 +52,7 @@ public class Memory {
 
     public void MoveBack() {
 
-        if (repeatBlock != "" || inLoop) {
+        if (repeatBlock == "" || inLoop) {
             if (acKey != 0) {
 
                 acKey--;
@@ -77,7 +71,7 @@ public class Memory {
 
     public void MoveFront() {
 
-        if (repeatBlock != "" || inLoop) {
+        if (repeatBlock == "" || inLoop) {
             if (acKey == memo.Count()-1) {
 
                 memo.Add(0);
@@ -107,17 +101,19 @@ public class Memory {
         while (memo[acKey] != 0) {
             
             commands++;
-            Execute(repeatBlock.Substring(repeatBlock.LastIndexOf('[')));
+            inLoop = true;
+            Execute(repeatBlock.Substring(repeatBlock.LastIndexOf('[')+1));
 
-        };
+        };  
 
+        inLoop = false;
         repeatBlock = repeatBlock.Remove(repeatBlock.LastIndexOf('['));
 
     }
 
     public void Write() {
 
-        if (repeatBlock != "" || inLoop) {
+        if (repeatBlock == "" || inLoop) {
             byte[] by = [memo[acKey]];
             Console.Write(
                 Encoding.ASCII.GetChars(by)[0]
@@ -134,12 +130,11 @@ public class Memory {
 
     public void Read() {
 
-        if (repeatBlock != "" || inLoop) {
+        if (repeatBlock == "" || inLoop) {
 
-            char c = Convert.ToChar(Console.ReadKey(false).Key.ToString());
-            char[] _c = [c];
+            char key = Console.ReadKey(true).KeyChar;
 
-            memo[acKey] = Encoding.ASCII.GetBytes(_c)[0];
+            memo[acKey] = (byte) key;
             commands++;
         }
         else {
