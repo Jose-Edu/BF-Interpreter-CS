@@ -114,10 +114,17 @@ public class Memory {
     public void Write() {
 
         if (repeatBlock == "" || inLoop) {
-            byte[] by = [memo[acKey]];
-            Console.Write(
-                Encoding.ASCII.GetChars(by)[0]
-            );
+            if (memo[acKey] == 13) {
+            
+                Console.WriteLine();
+
+            }
+            else {
+                byte[] by = [memo[acKey]];
+                Console.Write(
+                    Encoding.ASCII.GetChars(by)[0]
+                );
+            };
             commands++;
         }
         else {
