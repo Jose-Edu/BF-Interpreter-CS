@@ -7,6 +7,7 @@ public class Memory {
     private string repeatBlock = "";
     public int commands = 0;
     private bool inLoop = false;
+    private readonly ASCIIConvertExtras extraASCII = new ASCIIConvertExtras();
 
     public void Add() {
 
@@ -119,11 +120,16 @@ public class Memory {
                 Console.WriteLine();
 
             }
-            else {
+            else if (memo[acKey] < 127) {
                 byte[] by = [memo[acKey]];
                 Console.Write(
-                    Encoding.ASCII.GetChars(by)[0]
+                    Encoding.GetEncoding("UTF-8").GetChars(by)[0]
                 );
+            }
+            else {
+
+                Console.Write(extraASCII.ReturnExtraASCII(memo[acKey]));
+
             };
             commands++;
         }
